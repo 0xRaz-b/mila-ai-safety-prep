@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL Cheat Sheet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2330;
+    --border: #30363d;
+    --select: #f97316;
+    --from: #3b82f6;
+    --where: #a855f7;
+    --order: #10b981;
+    --count: #f59e0b;
+    --between: #ec4899;
+    --in: #06b6d4;
+    --distinct: #84cc16;
+    --text: #e6edf3;
+    --muted: #7d8590;
+    --code-bg: #0d1117;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    padding: 40px 24px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 6px;
+    letter-spacing: -1px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 48px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto 40px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 12px 12px 0 0;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .keyword {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .description {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    overflow-x: auto;
+  }
+
+  .s { color: var(--select); }
+  .f { color: var(--from); }
+  .w { color: var(--where); }
+  .o { color: var(--order); }
+  .c { color: var(--count); }
+  .b { color: var(--between); }
+  .i { color: var(--in); }
+  .d { color: var(--distinct); }
+  .val { color: #98c379; }
+  .col { color: #e6edf3; }
+  .op { color: #e5c07b; }
+  .cm { color: #5c6370; font-style: italic; }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: var(--surface2);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid var(--border);
+  }
+
+  /* Full-width anatomy card */
+  .anatomy-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    max-width: 1100px;
+    margin: 0 auto 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .anatomy-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--select), var(--from), var(--where), var(--order));
+  }
+
+  .anatomy-title {
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  .anatomy {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .anatomy-piece {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .anatomy-word {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 2px solid;
+  }
+
+  .anatomy-label {
+    font-size: 0.68rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+    max-width: 90px;
+    line-height: 1.3;
+  }
+
+  .anatomy-sep {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.4rem;
+    color: var(--border);
+    padding-top: 8px;
+  }
+
+  .optional-badge {
+    font-size: 0.6rem;
+    padding: 1px 6px;
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .order-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    max-width: 1100px;
+    margin: 0 auto 20px;
+  }
+
+  .order-title {
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  .order-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .order-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .order-kw {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 6px;
+  }
+
+  .order-arrow {
+    color: var(--border);
+    font-size: 1.2rem;
+  }
+
+  .req { opacity: 1; }
+  .opt { opacity: 0.55; }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--text);
+  }
+
+  .operators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+  }
+
+  .op-item {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+  }
+
+  .op-sym { color: var(--count); font-weight: 700; }
+  .op-desc { color: var(--muted); font-size: 0.72rem; }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<h1>SQL Cheat Sheet</h1>
+<p class="subtitle">-- syntaxe visuelle pour débutants --</p>
+
+<!-- ANATOMY -->
+<div class="anatomy-card">
+  <div class="anatomy-title">// anatomie d'une requête complète</div>
+  <div class="anatomy">
+    <div class="anatomy-piece">
+      <div class="anatomy-word" style="color:var(--select);border-color:var(--select);background:color-mix(in srgb,var(--select) 10%,transparent)">SELECT</div>
+      <div class="anatomy-label">quelles colonnes afficher</div>
+    </div>
+    <div class="anatomy-sep" style="padding-top:8px">·</div>
+    <div class="anatomy-piece">
+      <div class="anatomy-word" style="color:#e6edf3;border-color:var(--border);background:var(--surface2)">* / col</div>
+      <div class="anatomy-label">* = tout, ou nom de colonne</div>
+    </div>
+    <div class="anatomy-sep" style="padding-top:8px">→</div>
+    <div class="anatomy-piece">
+      <div class="anatomy-word" style="color:var(--from);border-color:var(--from);background:color-mix(in srgb,var(--from) 10%,transparent)">FROM</div>
+      <div class="anatomy-label">quelle table</div>
+    </div>
+    <div class="anatomy-sep" style="padding-top:8px">·</div>
+    <div class="anatomy-piece">
+      <div class="anatomy-word" style="color:#e6edf3;border-color:var(--border);background:var(--surface2)">Table</div>
+      <div class="anatomy-label">nom de la table</div>
+    </div>
+    <div class="anatomy-sep" style="padding-top:8px">→</div>
+    <div class="anatomy-piece">
+      <span class="optional-badge">optionnel</span>
+      <div class="anatomy-word" style="color:var(--where);border-color:var(--where);background:color-mix(in srgb,var(--where) 10%,transparent)">WHERE</div>
+      <div class="anatomy-label">filtrer les lignes</div>
+    </div>
+    <div class="anatomy-sep" style="padding-top:8px">→</div>
+    <div class="anatomy-piece">
+      <span class="optional-badge">optionnel</span>
+      <div class="anatomy-word" style="color:var(--order);border-color:var(--order);background:color-mix(in srgb,var(--order) 10%,transparent)">ORDER BY</div>
+      <div class="anatomy-label">trier les résultats</div>
+    </div>
+    <div class="anatomy-sep" style="padding-top:8px">→</div>
+    <div class="anatomy-piece">
+      <span class="optional-badge">optionnel</span>
+      <div class="anatomy-word" style="color:var(--count);border-color:var(--count);background:color-mix(in srgb,var(--count) 10%,transparent)">LIMIT</div>
+      <div class="anatomy-label">nombre de lignes max</div>
+    </div>
+  </div>
+
+  <div class="code-block">
+<span class="s">SELECT</span> <span class="col">Name</span>, <span class="col">City</span>  &nbsp;&nbsp;<span class="cm">-- colonnes à afficher</span>
+<span class="f">FROM</span> <span class="col">Customers</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">-- table source</span>
+<span class="w">WHERE</span> <span class="col">City</span> <span class="op">=</span> <span class="val">'Montreal'</span>  <span class="cm">-- filtre</span>
+<span class="o">ORDER BY</span> <span class="col">Name</span> <span class="op">ASC</span>  &nbsp;<span class="cm">-- tri A→Z</span>
+<span class="c">LIMIT</span> <span class="val">10</span><span class="op">;</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">-- max 10 résultats</span>
+  </div>
+</div>
+
+<!-- CARDS GRID -->
+<div class="grid">
+
+  <!-- SELECT -->
+  <div class="card" style="--accent:var(--select)">
+    <div class="card-header">
+      <span class="keyword" style="--accent:var(--select)">SELECT</span>
+      <span style="color:var(--muted);font-size:0.85rem">Choisir les colonnes</span>
+    </div>
+    <p class="description">Définit quelles colonnes tu veux voir dans les résultats.</p>
+    <div class="code-block">
+<span class="s">SELECT</span> <span class="op">*</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">-- toutes les colonnes</span>
+<span class="s">SELECT</span> <span class="col">Name</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">-- une colonne</span>
+<span class="s">SELECT</span> <span class="col">Name</span>, <span class="col">City</span>, <span class="col">Email</span>  &nbsp;<span class="cm">-- plusieurs</span>
+    </div>
+    <div class="tags"><span class="tag">obligatoire</span><span class="tag">toujours en premier</span></div>
+  </div>
+
+  <!-- DISTINCT -->
+  <div class="card" style="--accent:var(--distinct)">
+    <div class="card-header">
+      <span class="keyword" style="--accent:var(--distinct)">DISTINCT</span>
+      <span style="color:var(--muted);font-size:0.85rem">Éliminer les doublons</span>
+    </div>
+    <p class="description">Se place juste après SELECT. Affiche chaque valeur une seule fois.</p>
+    <div class="code-block">
+<span class="cm">-- Sans DISTINCT (doublons)</span>
+<span class="s">SELECT</span> <span class="col">City</span> <span class="f">FROM</span> <span class="col">Customers</span>
+<span class="cm">→ Montreal, Montreal, Toronto</span>
+
+<span class="cm">-- Avec DISTINCT (unique)</span>
+<span class="s">SELECT</span> <span class="d">DISTINCT</span> <span class="col">City</span> <span class="f">FROM</span> <span class="col">Customers</span>
+<span class="cm">→ Montreal, Toronto</span>
+    </div>
+    <div class="tags"><span class="tag">après SELECT</span><span class="tag">élimine doublons</span></div>
+  </div>
+
+  <!-- WHERE -->
+  <div class="card" style="--accent:var(--where)">
+    <div class="card-header">
+      <span class="keyword" style="--accent:var(--where)">WHERE</span>
+      <span style="color:var(--muted);font-size:0.85rem">Filtrer les lignes</span>
+    </div>
+    <p class="description">Filtre les lignes selon une condition. Contrôle QUELLES lignes apparaissent.</p>
+    <div class="code-block">
+<span class="s">SELECT</span> <span class="op">*</span> <span class="f">FROM</span> <span class="col">Products</span>
+<span class="w">WHERE</span> <span class="col">Price</span> <span class="op">=</span> <span class="val">18</span>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">-- égal</span>
+<span class="w">WHERE</span> <span class="col">Price</span> <span class="op"><></span> <span class="val">18</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">-- différent</span>
+<span class="w">WHERE</span> <span class="col">Price</span> <span class="op">></span> <span class="val">10</span>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">-- supérieur</span>
+<span class="w">WHERE</span> <span class="col">City</span> <span class="op">=</span> <span class="val">'Montreal'</span>  <span class="cm">-- texte</span>
+    </div>
+    <div class="tags"><span class="tag">optionnel</span><span class="tag">filtre les lignes</span></div>
+  </div>
+
+  <!-- BETWEEN -->
+  <div class="card" style="--accent:var(--between)">
+    <div class="card-header">
+      <span class="keyword" style="--accent:var(--between)">BETWEEN</span>
+      <span style="color:var(--muted);font-size:0.85rem">Dans un intervalle</span>
+    </div>
+    <p class="description">Filtre les valeurs entre deux bornes. Les deux bornes sont incluses.</p>
+    <div class="code-block">
+<span class="s">SELECT</span> <span class="op">*</span> <span class="f">FROM</span> <span class="col">Products</span>
+<span class="w">WHERE</span> <span class="col">Price</span> <span class="b">BETWEEN</span> <span class="val">10</span> <span class="op">AND</span> <span class="val">20</span>
+
+<span class="cm">-- Équivalent à :</span>
+<span class="w">WHERE</span> <span class="col">Price</span> <span class="op">>=</span> <span class="val">10</span> <span class="op">AND</span> <span class="col">Price</span> <span class="op"><=</span> <span class="val">20</span>
+
+<span class="cm">-- Fonctionne aussi avec des dates</span>
+<span class="w">WHERE</span> <span class="col">Date</span> <span class="b">BETWEEN</span> <span class="val">'2024-01-01'</span> <span class="op">AND</span> <span class="val">'2024-12-31'</span>
+    </div>
+    <div class="tags"><span class="tag">dans WHERE</span><span class="tag">bornes incluses</span><span class="tag">AND obligatoire</span></div>
+  </div>
+
+  <!-- IN -->
+  <div class="card" style="--accent:var(--in)">
+    <div class="card-header">
+      <span class="keyword" style="--accent:var(--in)">IN</span>
+      <span style="color:var(--muted);font-size:0.85rem">Liste de valeurs</span>
+    </div>
+    <p class="description">Raccourci pour plusieurs conditions OR. Spécifie une liste de valeurs acceptées.</p>
+    <div class="code-block">
+<span class="s">SELECT</span> <span class="op">*</span> <span class="f">FROM</span> <span class="col">Customers</span>
+<span class="w">WHERE</span> <span class="col">City</span> <span class="i">IN</span> (<span class="val">'Montreal'</span>, <span class="val">'Toronto'</span>, <span class="val">'Quebec'</span>)
+
+<span class="cm">-- Équivalent à :</span>
+<span class="w">WHERE</span> <span class="col">City</span> <span class="op">=</span> <span class="val">'Montreal'</span>
+<span class="op">OR</span> <span class="col">City</span> <span class="op">=</span> <span class="val">'Toronto'</span>
+<span class="op">OR</span> <span class="col">City</span> <span class="op">=</span> <span class="val">'Quebec'</span>
+    </div>
+    <div class="tags"><span class="tag">dans WHERE</span><span class="tag">remplace plusieurs OR</span></div>
+  </div>
+
+  <!-- COUNT -->
+  <div class="card" style="--accent:var(--count)">
+    <div class="card-header">
+      <span class="keyword" style="--accent:var(--count)">COUNT</span>
+      <span style="color:var(--muted);font-size:0.85rem">Compter les lignes</span>
+    </div>
+    <p class="description">Fonction d'agrégation. Compte le nombre de lignes ou de valeurs non-nulles.</p>
+    <div class="code-block">
+<span class="s">SELECT</span> <span class="c">COUNT</span>(<span class="op">*</span>) <span class="f">FROM</span> <span class="col">Customers</span>
+<span class="cm">→ compte toutes les lignes</span>
+
+<span class="s">SELECT</span> <span class="c">COUNT</span>(<span class="col">Email</span>) <span class="f">FROM</span> <span class="col">Customers</span>
+<span class="cm">→ ignore les lignes sans email (NULL)</span>
+
+<span class="s">SELECT</span> <span class="c">COUNT</span>(<span class="d">DISTINCT</span> <span class="col">City</span>) <span class="f">FROM</span> <span class="col">Customers</span>
+<span class="cm">→ nombre de villes uniques</span>
+    </div>
+    <div class="tags"><span class="tag">après SELECT</span><span class="tag">un argument</span><span class="tag">ignore NULL</span></div>
+  </div>
+
+  <!-- ORDER BY -->
+  <div class="card" style="--accent:var(--order)">
+    <div class="card-header">
+      <span class="keyword" style="--accent:var(--order)">ORDER BY</span>
+      <span style="color:var(--muted);font-size:0.85rem">Trier les résultats</span>
+    </div>
+    <p class="description">Trie les résultats selon une ou plusieurs colonnes, en ordre croissant ou décroissant.</p>
+    <div class="code-block">
+<span class="s">SELECT</span> <span class="op">*</span> <span class="f">FROM</span> <span class="col">Customers</span>
+<span class="o">ORDER BY</span> <span class="col">Name</span> <span class="op">ASC</span>   <span class="cm">-- A → Z (défaut)</span>
+
+<span class="s">SELECT</span> <span class="op">*</span> <span class="f">FROM</span> <span class="col">Products</span>
+<span class="o">ORDER BY</span> <span class="col">Price</span> <span class="op">DESC</span>  <span class="cm">-- plus cher en premier</span>
+    </div>
+    <div class="tags"><span class="tag">optionnel</span><span class="tag">ASC ou DESC</span><span class="tag">après WHERE</span></div>
+  </div>
+
+  <!-- LIMIT -->
+  <div class="card" style="--accent:#6366f1">
+    <div class="card-header">
+      <span class="keyword" style="--accent:#6366f1;color:#6366f1;background:color-mix(in srgb,#6366f1 15%,transparent);border-color:color-mix(in srgb,#6366f1 30%,transparent)">LIMIT</span>
+      <span style="color:var(--muted);font-size:0.85rem">Limiter les résultats</span>
+    </div>
+    <p class="description">Limite le nombre de lignes retournées. Toujours en dernière position.</p>
+    <div class="code-block">
+<span class="s">SELECT</span> <span class="op">*</span> <span class="f">FROM</span> <span class="col">Products</span>
+<span class="o">ORDER BY</span> <span class="col">Price</span> <span class="op">DESC</span>
+<span class="c">LIMIT</span> <span class="val">5</span><span class="op">;</span>  <span class="cm">-- seulement les 5 premiers</span>
+    </div>
+    <div class="tags"><span class="tag">optionnel</span><span class="tag">toujours en dernier</span></div>
+  </div>
+
+</div>
+
+<!-- OPERATORS -->
+<div class="order-section" style="max-width:1100px;margin:0 auto 20px;">
+  <div class="order-title">// opérateurs de comparaison (dans WHERE)</div>
+  <div class="operators-grid">
+    <div class="op-item"><span class="op-sym">=</span><span class="op-desc">égal à</span></div>
+    <div class="op-item"><span class="op-sym">&lt;&gt;</span><span class="op-desc">différent de</span></div>
+    <div class="op-item"><span class="op-sym">&gt;</span><span class="op-desc">supérieur à</span></div>
+    <div class="op-item"><span class="op-sym">&lt;</span><span class="op-desc">inférieur à</span></div>
+    <div class="op-item"><span class="op-sym">&gt;=</span><span class="op-desc">supérieur ou égal</span></div>
+    <div class="op-item"><span class="op-sym">&lt;=</span><span class="op-desc">inférieur ou égal</span></div>
+    <div class="op-item"><span class="op-sym">AND</span><span class="op-desc">les deux conditions</span></div>
+    <div class="op-item"><span class="op-sym">OR</span><span class="op-desc">l'une ou l'autre</span></div>
+    <div class="op-item"><span class="op-sym">NOT</span><span class="op-desc">inverse la condition</span></div>
+    <div class="op-item"><span class="op-sym">LIKE</span><span class="op-desc">recherche partielle</span></div>
+  </div>
+</div>
+
+<!-- ORDER OF CLAUSES -->
+<div class="order-section">
+  <div class="order-title">// ordre des clauses dans une requête</div>
+  <div class="order-flow">
+    <div class="order-item req">
+      <div class="order-kw" style="color:var(--select);background:color-mix(in srgb,var(--select) 12%,transparent);border:1px solid color-mix(in srgb,var(--select) 25%,transparent)">SELECT</div>
+    </div>
+    <span class="order-arrow">→</span>
+    <div class="order-item req">
+      <div class="order-kw" style="color:var(--from);background:color-mix(in srgb,var(--from) 12%,transparent);border:1px solid color-mix(in srgb,var(--from) 25%,transparent)">FROM</div>
+    </div>
+    <span class="order-arrow">→</span>
+    <div class="order-item opt">
+      <div class="order-kw" style="color:var(--where);background:color-mix(in srgb,var(--where) 12%,transparent);border:1px solid color-mix(in srgb,var(--where) 25%,transparent)">WHERE</div>
+    </div>
+    <span class="order-arrow">→</span>
+    <div class="order-item opt">
+      <div class="order-kw" style="color:var(--order);background:color-mix(in srgb,var(--order) 12%,transparent);border:1px solid color-mix(in srgb,var(--order) 25%,transparent)">ORDER BY</div>
+    </div>
+    <span class="order-arrow">→</span>
+    <div class="order-item opt">
+      <div class="order-kw" style="color:var(--count);background:color-mix(in srgb,var(--count) 12%,transparent);border:1px solid color-mix(in srgb,var(--count) 25%,transparent)">LIMIT</div>
+    </div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--text)"></div>couleur vive = obligatoire</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--muted)"></div>opacité réduite = optionnel</div>
+  </div>
+</div>
+
+<footer>SQL Cheat Sheet · Fait pour toi 🍁</footer>
+
+</body>
+</html>
