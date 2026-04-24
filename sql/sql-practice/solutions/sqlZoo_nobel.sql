@@ -85,3 +85,10 @@ FROM nobel
 WHERE (subject ='Medicine'
 AND yr < 1910)
 OR (subject = 'Literature' and yr >= 2004)
+
+-- Q11 Umlaut
+-- Find all details of the prize won by PETER GRÜNBERG
+
+SELECT *
+FROM nobel
+WHERE winner = 'PETER GRÜNBERG' 
