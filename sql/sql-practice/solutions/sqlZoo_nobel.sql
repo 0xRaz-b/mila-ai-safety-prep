@@ -52,3 +52,10 @@ SELECT * FROM nobel
  WHERE winner IN ('Theodore Roosevelt',
                   'Thomas Woodrow Wilson',
                   'Jimmy Carter','Barack Obama')
+
+-- Q7 John
+-- Show the winners with first name John
+
+SELECT winner 
+FROM nobel 
+WHERE winner LIKE 'John%'
