@@ -67,3 +67,12 @@ SELECT *
 FROM nobel 
 WHERE (yr = 1980 AND subject = 'physics')
 OR (yr = 1984 AND subject = 'chemistry')
+
+-- Q9 Exclude Chemists and Medics
+-- Show the year, subject, and name of winners for 1980 excluding chemistry and medicine
+
+SELECT * 
+FROM nobel 
+WHERE yr = 1980 
+AND subject <> 'chemistry'
+AND subject <> 'medicine' 
