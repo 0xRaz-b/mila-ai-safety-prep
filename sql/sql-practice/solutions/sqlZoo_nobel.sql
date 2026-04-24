@@ -108,3 +108,11 @@ FROM nobel
 WHERE winner 
 LIKE 'SIR%'
 ORDER BY yr DESC, winner ASC
+
+-- Q14 Chemistry and Physics last
+-- Show the 1984 winners and subject ordered by subject and winner name; but list chemistry and physics last.
+
+SELECT winner, subject
+FROM nobel
+WHERE yr = 1984
+ORDER BY subject IN ('physics','chemistry'), subject, winner
