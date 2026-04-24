@@ -27,3 +27,11 @@ SELECT yr, subject
 FROM nobel
 WHERE winner = 'Albert Einstein'
 
+-- Q4: Recent Peace Prizes
+-- Find winner of peace prize since 2000
+
+SELECT winner
+FROM nobel 
+WHERE subject = 'Peace'
+AND yr >= 2000
+
