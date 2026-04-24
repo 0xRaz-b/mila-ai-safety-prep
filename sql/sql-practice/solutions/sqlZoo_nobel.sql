@@ -59,3 +59,11 @@ SELECT * FROM nobel
 SELECT winner 
 FROM nobel 
 WHERE winner LIKE 'John%'
+
+-- Q8 Chemistry and Physics from different years
+-- Show the year, subject, and name of physics winners for 1980 together with the chemistry winners for 1984.
+
+SELECT * 
+FROM nobel 
+WHERE (yr = 1980 AND subject = 'physics')
+OR (yr = 1984 AND subject = 'chemistry')
