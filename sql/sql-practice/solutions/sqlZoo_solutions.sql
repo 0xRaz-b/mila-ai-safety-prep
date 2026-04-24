@@ -93,3 +93,14 @@ WHERE (LENGTH(name) = LENGTH(capital))
 SELECT name, capital
 FROM world
 WHERE (LEFT(name,1) = LEFT(capital,1) AND name <> capital)
+
+-- Q13: All vowel 
+-- Add filter to see countries that has all vowels 
+SELECT name
+FROM world
+WHERE name LIKE '%a%' 
+AND name LIKE '%e%'
+AND name LIKE '%i%'
+AND name LIKE '%o%'
+AND name LIKE '%u%'
+AND name NOT LIKE '% %'
