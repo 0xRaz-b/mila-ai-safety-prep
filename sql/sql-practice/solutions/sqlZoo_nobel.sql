@@ -44,3 +44,11 @@ FROM nobel
 WHERE yr >=1980
 AND yr <= 1989
 AND subject = 'literature'
+
+-- Q6 Only Presidents
+-- Show all details of the presidential winners:
+
+SELECT * FROM nobel
+ WHERE winner IN ('Theodore Roosevelt',
+                  'Thomas Woodrow Wilson',
+                  'Jimmy Carter','Barack Obama')
