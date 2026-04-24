@@ -99,3 +99,12 @@ WHERE winner = 'PETER GRÜNBERG'
 SELECT * 
 FROM nobel 
 WHERE winner = CONCAT ('EUGENE O','NEILL')
+
+-- Q13 Knights of the realm
+-- List the winners, year and subject where the winner starts with Sir. Show the the most recent first, then by name order.
+
+SELECT winner, yr, subject 
+FROM nobel 
+WHERE winner 
+LIKE 'SIR%'
+ORDER BY yr DESC, winner ASC
