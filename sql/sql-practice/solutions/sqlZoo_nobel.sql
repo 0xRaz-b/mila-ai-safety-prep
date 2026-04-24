@@ -35,3 +35,12 @@ FROM nobel
 WHERE subject = 'Peace'
 AND yr >= 2000
 
+
+-- Q5: Literature in the 1980's
+-- Show all details (yr, subject, winner) of the literature prize winners for 1980 to 1989 inclusive.
+
+SELECT yr,subject,winner
+FROM nobel 
+WHERE yr >=1980
+AND yr <= 1989
+AND subject = 'literature'
