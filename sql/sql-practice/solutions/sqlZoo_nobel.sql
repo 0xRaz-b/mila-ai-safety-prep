@@ -12,10 +12,18 @@ SELECT yr, subject, winner
 FROM nobel
 WHERE yr = 1950
 
--- Q1: 1962 Literature
+-- Q2: 1962 Literature
 -- Find the price of literature for a certain year 
 
 SELECT winner
 FROM nobel
 WHERE yr = 1962
 AND subject = 'literature'
+
+-- Q3: Albert Einstein
+-- Find when Sir Einstein won the nobel price and the concerned topic 
+
+SELECT yr, subject
+FROM nobel
+WHERE winner = 'Albert Einstein'
+
