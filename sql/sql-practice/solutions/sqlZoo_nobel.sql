@@ -92,3 +92,10 @@ OR (subject = 'Literature' and yr >= 2004)
 SELECT *
 FROM nobel
 WHERE winner = 'PETER GRÜNBERG' 
+
+-- Q12 Apostrophe
+-- Find all details of the prize won by EUGENE O'NEILL
+
+SELECT * 
+FROM nobel 
+WHERE winner = CONCAT ('EUGENE O','NEILL')
