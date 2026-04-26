@@ -20,3 +20,7 @@ SELECT name
 FROM world
 WHERE continent = 'Europe' 
 AND gdp/population > ( SELECT gdp/population FROM world WHERE name = 'United Kingdom')
+
+-- Q3: Neighbours of Argentina and Australia
+-- List the name and continent of countries in the continents containing either Argentina or Australia. Order by name of the country.
+
