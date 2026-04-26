@@ -24,3 +24,9 @@ AND gdp/population > ( SELECT gdp/population FROM world WHERE name = 'United Kin
 -- Q3: Neighbours of Argentina and Australia
 -- List the name and continent of countries in the continents containing either Argentina or Australia. Order by name of the country.
 
+SELECT name, continent 
+FROM world
+WHERE continent IN 
+(SELECT continent FROM world 
+WHERE name IN ('Australia','Argentina'))
+ORDER BY name 
