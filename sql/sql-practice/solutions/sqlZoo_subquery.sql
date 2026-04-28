@@ -68,3 +68,11 @@ SELECT continent, name, area FROM world x
     (SELECT area FROM world y
         WHERE y.continent=x.continent
           AND area>0)
+
+-- Q8 8. First country of each continent (alphabetically)
+-- List each continent and the name of the country that comes first alphabetically.
+
+SELECT continent, name FROM world x
+WHERE name <= ALL
+    (SELECT name FROM world y
+        WHERE y.continent = x.continent)
