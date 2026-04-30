@@ -16,3 +16,11 @@ FROM world
 
 SELECT DISTINCT continent
 FROM world 
+
+-- Q3 : GDP of Africa
+-- Give the total GDP of Africa
+
+SELECT SUM(gdp)
+FROM world
+where continent = 'africa'
+
