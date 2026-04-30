@@ -9,3 +9,10 @@
 
 SELECT SUM(population)
 FROM world
+
+-- Q2 : List of continents
+-- List all the continents - just once each
+
+
+SELECT DISTINCT continent
+FROM world 
