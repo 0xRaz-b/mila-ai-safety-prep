@@ -24,3 +24,9 @@ SELECT SUM(gdp)
 FROM world
 where continent = 'africa'
 
+-- Q4: Count the big countries
+-- How many countries have an area of at least 1000000
+
+SELECT COUNT(name)
+FROM world
+where area >= 1000000
