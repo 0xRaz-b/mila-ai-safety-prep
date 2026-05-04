@@ -49,17 +49,23 @@ SELECT player, teamid,coach,gtime
 FROM goal JOIN eteam on (goal.teamid = eteam.id)
 WHERE gtime<=10
 
--- Q6 Disambiguation
+-- Q6: Disambiguation
 -- List the dates of the matches and the name of the team in which 'Fernando Santos' was the team1 coach.
 
 SELECT mdate, teamname
 FROM game JOIN eteam ON (game.team1 = eteam.id)
 where coach = 'Fernando Santos'
 
--- Q7 Stadiums
+-- Q7: Stadiums
 -- List the player for every goal scored in a game where the stadium was 'National Stadium, Warsaw'
 
 SELECT player 
 FROM game JOIN goal ON (game.id = goal.matchid)
 where stadium LIKE 'National Stadium, Warsaw'
 
+-- Q8: Scoring against Germany
+-- Show the name of all players who scored a goal against Germany.
+
+SELECT DISTINCT player
+FROM game JOIN goal ON matchid = id
+WHERE (team1='GER' OR team2='GER') AND teamid != 'GER'
