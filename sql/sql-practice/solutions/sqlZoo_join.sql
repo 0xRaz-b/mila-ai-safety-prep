@@ -99,3 +99,13 @@ SELECT matchid, mdate, COUNT(*)
 FROM game JOIN goal ON ( game.id = goal.matchid)
 WHERE teamid ='GER'
 GROUP BY matchid,mdate
+
+-- Q13: England scores
+-- List every match with the goals scored by each team for all ENG games as shown. This will use "CASE WHEN" which has not been explained in any previous exercises.
+
+SELECT mdate, team1,
+SUM(CASE WHEN teamid = team1 THEN 1 ELSE 0 END) AS score1,team2,
+SUM(CASE WHEN teamid = team2 THEN 1 ELSE 0 END) AS score2
+FROM game LEFT JOIN goal ON (goal.matchid = game.id)
+WHERE team1 = 'ENG' OR team2 = 'ENG'
+GROUP BY mdate, team1, team2
