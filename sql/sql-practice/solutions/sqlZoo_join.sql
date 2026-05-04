@@ -76,3 +76,10 @@ WHERE (team1='GER' OR team2='GER') AND teamid != 'GER'
 SELECT teamname, COUNT(*) 
 FROM eteam JOIN goal ON (eteam.id = goal.teamid)
 GROUP BY teamname
+
+-- Q10: Stadium and goal total
+-- Show the stadium and the number of goals scored in each stadium.
+
+SELECT stadium, COUNT(*)
+FROM game JOIN goal on (goal.matchid = game.id)
+GROUP BY stadium
