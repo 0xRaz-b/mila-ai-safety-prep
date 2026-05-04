@@ -49,4 +49,10 @@ SELECT player, teamid,coach,gtime
 FROM goal JOIN eteam on (goal.teamid = eteam.id)
 WHERE gtime<=10
 
+-- Q6 Disambiguation
+-- List the dates of the matches and the name of the team in which 'Fernando Santos' was the team1 coach.
+
+SELECT mdate, teamname
+FROM game JOIN eteam ON (game.team1 = eteam.id)
+where coach = 'Fernando Santos'
 
