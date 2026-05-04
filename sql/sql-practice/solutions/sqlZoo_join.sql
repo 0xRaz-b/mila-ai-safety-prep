@@ -24,3 +24,12 @@ WHERE teamid = 'GER'
 SELECT id,stadium,team1,team2
 FROM game
 WHERE id = 1012
+
+
+-- Q3: A JOIN
+-- Show the player, teamid, stadium and mdate for every German goal.
+
+
+SELECT player, teamid, stadium, mdate
+FROM game JOIN goal ON (id = matchid)
+WHERE teamid = 'GER'
