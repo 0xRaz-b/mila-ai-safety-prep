@@ -40,6 +40,7 @@ OLLAMA_OPTIONS = {
     "temperature":    0.85,
     "top_p":          0.92,
     "repeat_penalty": 1.1,
+    "num_predict":    4096, 
 }
 
 
