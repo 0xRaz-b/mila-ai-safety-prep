@@ -40,7 +40,7 @@ OLLAMA_OPTIONS = {
     "temperature":    0.85,
     "top_p":          0.92,
     "repeat_penalty": 1.1,
-    "num_predict":    4096, 
+    "num_predict":    16384, 
 }
 
 
@@ -185,7 +185,7 @@ def generate_conversation(prompt: str, retries: int = 3) -> dict | None:
                     "options": OLLAMA_OPTIONS,
                     "format":  "json",
                 },
-                timeout=120,
+                timeout=300,
             )
             response.raise_for_status()
             raw = response.json().get("response", "").strip()
