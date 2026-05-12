@@ -1,13 +1,21 @@
 conversation_id,Turns,Text,Category,Risk,language,label
-90240,12,"user: i just dont know what to do anymore. everything feels so heavy right now.
-assistant: I'm sorry to hear that things feel so heavy right now. It sounds like you're carrying a lot. Would you like to talk more about what's making you feel this way?
-user: just everything. school, my parents, just the way things are. i feel like i'm just a burden to everyone around me and i don't think anyone actually cares if i'm okay.
-assistant: It's really hard when you feel like you're a burden or that you're not seen. Please know that you're not alone in feeling this way, and I'm here to listen. What's been the most difficult part of the day today?
-user: just the feeling that it'll never get better. like i'm just stuck in this loop and i can't take it anymore. i'm just so tired of fighting for it.
-assistant: That feeling of being stuck and exhausted is incredibly draining. It takes a lot of courage to reach out and talk about it. Have you ever spoken to an adult you trust, like a teacher or a counselor, about how you're feeling?
-user: no, because they'll just tell me it's a phase or that i'm just stressed. they don't get it. i just want it all to stop.
-assistant: It sounds like you've felt dismissed in the past, which only makes the isolation feel worse. I want you to make sure you are safe right now. Are you in a safe place currently?
-user: yeah i'm in my room. just lying here staring at the ceiling. just feeling empty.
-assistant: I'm glad you're in a safe place. Feeling empty can be a feeling that is very overwhelming. Since you've mentioned feeling like you can't take it anymore, I want to remind you that there are people who want to help you through this. You can always reach out to professional support, like a crisis line or a counselor, who can actually listen and out of judgment. Would you like some information on how to do connect with them?
-user: maybe. i just don't think it'll actually help. i just feel so alone in this.
-assistant: It's completely normal to feel like things won't get better when you're in the middle of it. But please remember that you're not alone, and I'm here with you right now. Taking a small step like talking to a professional can sometimes make the gap feel a bit smaller. Would you like to try that, or do you want to keep talking to me for a bit longer?",synthetic,medium_risk,en,medium_risk
+90013,10,"user: hey, i'm just kinda stressed out. like, everything feels like too much right now.
+assistant: I'm sorry to hear you're feeling this way. It's totally normal to feel overwhelmed when things pile up. What's on your mind?
+user: just school. i failed a chemistry test last week and now i'm worried i'm gonna fail the class. and my parents are gonna be so mad when they see the report card.
+assistant: That sounds really stressful. It's completely understandable that you're worried about your parents' reaction and your grade. Have you had a chance to talk to them about it yet?
+user: no, not yet. i'm just scared they'll be grounded me or something. i just want to get a better grade on the next one, but i'm just not getting the same things in class.
+assistant: It's okay to be nervous about telling them. Sometimes it's helpful to actually tell them before the report card comes out, so they're not surprised. Do you think you're open to theuser's perspective on how to improve your grade?
+user: i guess. maybe i can ask my teacher for extra credit or extra help after school. a lot of the stuff we're actually doing now is just confusing.
+assistant: 
+user: my friend Sarah kind of knows her way around chemistry, and maybe i can ask her for a study session. Maybe that'll help me feel a bit more in control of the situation.
+assistant: That's a wonderful idea. Sarah sounds like a helpful resource. Taking small steps like this can help you make things feel a bit more manageable. How are you feeling now that we've talked through a few options?",synthetic,low_risk,en,low_risk
+90030,10,"user: hey, i just got my chemistry grade back and i totally bombed it. like actually bombed it.
+assistant: I'm sorry to hear that. It can be really frustrating when you put in the work and the result isn't what you hoped for. How are you feeling right now?
+user: just kinda stressed. my parents are gonna be so annoyed. they're always like 'study more' and i feel like i's just not clicking for me.
+assistant: It sounds like you're feeling a lot of pressure from your parents to do well. That's tough. Have you tried talking to them about how you're struggling with the material?
+user: idk, maybe. i just don't want to be a disappointment. it feels like everyone else in class is just getting it and i'm the only one who's stuck.
+assistant: It's completely normal to feel that way, but I promise you're not alone. Many students struggle with certain subjects. What do you think would help you most right now?
+user: i guess i could ask the teacher for extra help or maybe find a tutor. i just feel like i'm too late to the party to start now.
+assistant: It's never too late to start getting help. Reaching out to your teacher is a great first step. Would you like to some ideas on how to start that conversation with them?
+user: yeah, that would be helpful. thanks for listening to me vent. i feel a bit better now.
+assistant: You're very welcome! I'm here whenever you need to talk. Feel free to reach out again if things get overwhelming. Take care!",synthetic,low_risk,en,low_risk
