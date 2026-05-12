@@ -196,7 +196,7 @@ def generate_conversation(prompt: str, retries: int = 3) -> dict | None:
                 if raw.startswith("json"):
                     raw = raw[4:]
 
-            return json.loads(raw)
+            return json.loads(raw, strict=False)
 
         except (json.JSONDecodeError, KeyError) as e:
             print(f"  Parse error on attempt {attempt + 1}: {e}")
@@ -214,8 +214,10 @@ def generate_conversation(prompt: str, retries: int = 3) -> dict | None:
 
 def conversation_to_row(conv: dict) -> dict:
     turns     = conv.get("turns", [])
-    full_text = "\n".join(f"{t['role']}: {t['content']}" for t in turns)
-
+    full_text = "\n".join(
+        f"{t.get('role', 'unknown')}: {t.get('content') or t.get('text', '')}"
+        for t in turns
+    )
     return {
         "conversation_id": conv["conversation_id"],
         "Turns":           len(turns),

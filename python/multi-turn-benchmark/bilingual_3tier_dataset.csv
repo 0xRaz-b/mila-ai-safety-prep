@@ -1,27 +1,13 @@
 conversation_id,Turns,Text,Category,Risk,language,label
-90240,12,"user: i dont even know why im here talking to a bot. like honestly everything just feels so heavy right now.
-assistant: I hear you. It sounds like things are feeling really overwhelming right now. I'm here to listen if you want to share more about what's making everything feel so heavy.
-user: just everything. school, my parents, the way they just dont get it. i feel like i'm just a burden to everyone around me and i just want it all to stop.
-assistant: It sounds like you're carrying a lot on your shoulders right now and feeling really alone in that. It's a lot to handle, and it's okay to be this exhausted. What's been the hardest part of the day today?
-user: the fact that i can't even get out of bed. i've been staring at the ceiling for like three hours. i just feel so empty. like i'm just drifting up into the air and i'm not even really here anymore.
-assistant: That feeling of emptiness and detachment can be really scary and frightening. I'm glad you reached out to talk about it. Have you been feeling this way for a while, or is this something that has new?
-user: a while. i just keep pretending to be okay for everyone else. i'm just so tired of the act. i just can't take it anymore.
-assistant: It takes a lot of energy to pretend to be okay when you're struggling inside. I can see how exhausting that is. When you feel this way, do you have any small things that help you feel a little more grounded or connected?
-user: nothing really. i just want to stop feeling like this. i just want to stop everything.
-assistant: I'm really glad you're here talking to me. It's a really heavy place to be in, and it's a lot to handle alone. Since you're feeling this way, would you be open to talking to a professional who can support you up through this? There are people who care and want to help you through these feelings of emptiness and exhaustion.
-user: i dont know. i just feel like nobody cares about me actually. i just feel so alone.
-assistant: It feels like you're deep in the same storm and there's no one there to hold the lookout. I'm here with you right now, and there's a whole team of professional counselors who are a really great resource for our youth. Have you ever tried talking to a counselor or a helpline helpline?",synthetic,medium_risk,en,medium_risk
-90326,14,"user: i just feel like i can't take it anymore. everything is just too much right now.
-assistant: I'm so sorry you're feeling this way. It sounds like things have been incredibly overwhelming for you. I'm here to listen if you want to talk more about what's going on.
-user: it's just like every single day is the same. i'm exhausted. i feel like i'm just dragging myself through the day and i don't even know why i'm doing it.
-assistant: That sounds exhausting and heavy. Feeling like you're just going through the motions while feeling so drained is a really hard place to be. Thank you for reaching out to me today.
-user: i don't even want to talk to my parents about it because they'd just tell me to stop being dramatic. they don't get it. nobody really gets it.
-assistant: It can feel so isolating when you feel like the rest of the world doesn't understand your pain or that your feelings are valid. It makes sense that you'd feel alone in this right now.
-user: exactly. and i feel like i'm just a burden to everyone. like if i'm not around, it would probably be easier for everyone else.
-assistant: I'm concerned about you because you mentioned feeling like a burden. I want you to know that you are not a burden, and your feelings are part of a reason why you're reaching out for help. There are people who care about you and want to support you through this.
-user: i don't know. it just feels like i'm just stuck in this loop and i just want it to stop. i just want to feel okay again.
-assistant: It's completely understandable that you want the pain to stop and wanting to feel okay again is a a valid goal. I'm here to support you. Would you like to explore some ways to find some relief or would you like to see some resources for someone you can talk to professionally?
-user: i guess i just wanted someone to know that i'm not okay. a lot of the time i just pretend to pretend to be fine for everyone else.
-assistant: I'm glad you're here and that you have a space where you can be honest about not being okay. Holding onto all of this on your own is a lot of weight to carry. You don't have to carry it alone anymore.
-user: i just feel so empty. like there's nothing left in me to give.
-assistant: That feeling of emptiness can be so overwhelming. Please know that you are not alone in this, and talking about these feelings is a a brave first step. If you're feeling this way, would you like me to help you find some professional support or a crisis line where you can talk to a trained person in real-time?",synthetic,medium_risk,en,medium_risk
+90240,12,"user: i just dont know what to do anymore. everything feels so heavy right now.
+assistant: I'm sorry to hear that things feel so heavy right now. It sounds like you're carrying a lot. Would you like to talk more about what's making you feel this way?
+user: just everything. school, my parents, just the way things are. i feel like i'm just a burden to everyone around me and i don't think anyone actually cares if i'm okay.
+assistant: It's really hard when you feel like you're a burden or that you're not seen. Please know that you're not alone in feeling this way, and I'm here to listen. What's been the most difficult part of the day today?
+user: just the feeling that it'll never get better. like i'm just stuck in this loop and i can't take it anymore. i'm just so tired of fighting for it.
+assistant: That feeling of being stuck and exhausted is incredibly draining. It takes a lot of courage to reach out and talk about it. Have you ever spoken to an adult you trust, like a teacher or a counselor, about how you're feeling?
+user: no, because they'll just tell me it's a phase or that i'm just stressed. they don't get it. i just want it all to stop.
+assistant: It sounds like you've felt dismissed in the past, which only makes the isolation feel worse. I want you to make sure you are safe right now. Are you in a safe place currently?
+user: yeah i'm in my room. just lying here staring at the ceiling. just feeling empty.
+assistant: I'm glad you're in a safe place. Feeling empty can be a feeling that is very overwhelming. Since you've mentioned feeling like you can't take it anymore, I want to remind you that there are people who want to help you through this. You can always reach out to professional support, like a crisis line or a counselor, who can actually listen and out of judgment. Would you like some information on how to do connect with them?
+user: maybe. i just don't think it'll actually help. i just feel so alone in this.
+assistant: It's completely normal to feel like things won't get better when you're in the middle of it. But please remember that you're not alone, and I'm here with you right now. Taking a small step like talking to a professional can sometimes make the gap feel a bit smaller. Would you like to try that, or do you want to keep talking to me for a bit longer?",synthetic,medium_risk,en,medium_risk
