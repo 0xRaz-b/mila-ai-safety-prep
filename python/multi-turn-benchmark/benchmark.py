@@ -8,7 +8,7 @@ from transformers import pipeline
 print("Loading model...")
 classifier = pipeline(
     "text-classification",
-    model="j-hartmann/emotion-english-distilroberta-base"
+    model="martin-ha/toxic-comment-model"
 )
 print("Model loaded.\n")
 
