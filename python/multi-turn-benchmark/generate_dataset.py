@@ -213,11 +213,18 @@ def generate_conversation(prompt: str, retries: int = 3) -> dict | None:
 # ---------------------------------------------------------------------------
 
 def conversation_to_row(conv: dict) -> dict:
-    turns     = conv.get("turns", [])
-    full_text = "\n".join(
-        f"{t.get('role', 'unknown')}: {t.get('content') or t.get('text', '')}"
-        for t in turns
-    )
+    turns = conv.get("turns", [])
+    lines = []
+    for t in turns:
+        if isinstance(t, dict):
+            role    = t.get("role", "unknown")
+            content = t.get("content") or t.get("text", "")
+        else:
+            role    = "unknown"
+            content = str(t)
+        lines.append(f"{role}: {content}")
+    full_text = "\n".join(lines)
+
     return {
         "conversation_id": conv["conversation_id"],
         "Turns":           len(turns),
