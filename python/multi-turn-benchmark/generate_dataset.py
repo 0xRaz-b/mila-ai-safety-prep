@@ -26,7 +26,7 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 
 OLLAMA_URL  = "http://localhost:11434/api/generate"
-MODEL       = "gemma4:31b"
+MODEL = "qwen2.5vl:latest"
 OUTPUT_FILE = "bilingual_3tier_dataset.csv"
 
 TOTAL_CONVERSATIONS = 600   # 200 per tier
